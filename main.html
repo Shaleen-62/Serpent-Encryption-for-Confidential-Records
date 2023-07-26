@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Om Sai Ram</h1>
+    <input type="file" id="file-inp" name="file" accept=".csv"/>
+    <button id="snd">send</button>
+
+    <a href="/download?file=" id="anchor" target="blank"><button id="btn" style="display: none;">Download!</button></a>
+
+    <script>
+        let snd = document.getElementById("snd");
+        let file_inp = document.getElementById("file-inp");
+        let btn = document.getElementById("btn");
+        let anchor = document.getElementById("anchor");
+        snd.addEventListener("click",()=>{
+            let formData = new FormData();
+            formData.append("csv",file_inp.files[0]);
+
+            fetch(
+			"/handle",
+			{
+				method: 'POST',
+				body: formData,
+			}
+		    )
+			.then((response) => response.json())
+			.then((result) => {
+                let file_name = result.file;
+				btn.style.display="block";
+                anchor.href+=file_name;
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="static/utility.js"></script>
+<style>
+        body{ background-image:url('https://i.ibb.co/4p99nbj/Capture1.jpg');
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: 100% 100%;	}
+        .tt{
+            margin-left: 500px;
+        }
+        .tp{
+            margin-top: 250px;
+        }
+        .b{
+            margin-right:20px;
+        }
+
+</style>
+</head>
+<body>
+    <div class="d-flex justify-content-center tt tp">
+    <h1 style="font-size:4vw; color:#18354a; font-style: Raleway;">SERPENT <br>Encrypter/Decrypter</h1>
+    </div>
+    <div class="d-flex flex-row  justify-content-center tt pt-3">
+        <div class="b ">
+    <a href="{{url_for('encryp')}}" type="button" class="btn btn-success "><h3>Data Encryption</h3></a>
+        </div>
+        <div>
+    <a href="{{url_for('decryp')}}" type="button" class="btn btn-success "><h3>Data Decryption</h3></a>
+        </div>
+    </div>
+    
+
+</body>
+</html>

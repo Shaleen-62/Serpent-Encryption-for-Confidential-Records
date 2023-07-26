@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <meta charset="utf-8">
+        <title>Serpent Encryption</title>
+        <script src="static/utility.js"></script>
+        <style>
+        body{ background-image:url('https://i.ibb.co/yFZc68Q/Capture2.jpg');
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+        font-family: 'Lato';
+		background-size: 100% 100%;	}
+
+        .con{
+            width: auto;
+            padding: 20px;
+            margin: 130px auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-bottom: 0px;
+        }
+
+        .bb{
+            width: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-bottom: 0px;
+        }
+
+        .button-38 {
+  background-color: #FFFFFF;
+  border: 0;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width:100px;
+}
+
+.button-38:hover {
+  background-color: rgb(249,250,251);
+}
+
+.button-38:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.button-38:focus-visible {
+  box-shadow: none;
+}
+    </style>
+    </head>
+<body>
+    <div class="con">
+        <h1 style="font-size:4vw; color:#fff; font-family: 'Open Sans';">SERPENT DECRYPTION</h1>
+    </div>
+    <div class="bb">
+        <h4 style="color:#fff">Decrypt your encrypted files by uploading the encrypted file along with its key</h4>
+    </div>
+    <div class="bb ">
+        <div class="d-flex flex-column">
+            <p style="color:#fff; margin-top:50px">Upload your CSV file:</p>
+        <input type="file" id="file-inp" name="file" style="color:#fff;" accept=".csv"/>
+        <p style="color:#fff; margin-top:10px">Enter your KEY(hex):</p>
+        <input type="text" id="key">
+        <p style="color:#fff; margin-top:10px">Enter the COLUMN NAME to be decrypted:</p>
+        <input type="text" id="column-name">
+        <div class="bb">
+        <button id="snd" class="button-38" role="button" style="color:#42ab8a; background-color:#fff; margin-top:10px; margin-right:5px">UPLOAD</button>
+      <a href="/download?file=" id="anchor" target="blank"><button id="btn" class="button-38" role="button" style="color:#42ab8a; background-color:#fff; margin-top:10px; display: none">Download!</button></a>
+    </div>
+
+    </div></div>
+    <div>
+    </div>
+</div>
+<script>
+    let snd = document.getElementById("snd");
+    let file_inp = document.getElementById("file-inp");
+    let btn = document.getElementById("btn");
+    let anchor = document.getElementById("anchor");
+    let key = document.getElementById("key");
+    let column_name = document.getElementById("column-name");
+    snd.addEventListener("click",()=>{
+        let formData = new FormData();
+        formData.append("csv",file_inp.files[0]);
+        formData.append("key",key.value);
+        formData.append("column_name",column_name.value);
+
+        fetch(
+        "/handled",
+        {
+            method: 'POST',
+            body: formData,
+        }
+        )
+        .then((response) => response.json())
+        .then((result) => {
+            let file_name = result.file;
+            btn.style.display="block";
+            anchor.href+=file_name;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    })
+</script>
+</body>
+</html>
+<!-- HTML !-->
+<!-- HTML !-->
